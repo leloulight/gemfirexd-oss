@@ -1,20 +1,21 @@
 <?xml version="1.0"?>
-
-<!-- Server.xml
-     Configures a cache to serve caching clients at port 40405.
-     The example region also is configured with a loader. 
--->
-
 <!DOCTYPE cache PUBLIC
-  "-//GemStone Systems, Inc.//GemFire Declarative Caching 6.5//EN"
-  "http://www.gemstone.com/dtd/cache6_5.dtd">
+    "-//GemStone Systems, Inc.//GemFire Declarative Caching 6.5//EN"
+    "http://www.gemstone.com/dtd/cache6_5.dtd">
+
 <cache>
-    <cache-server port="40404"/>
-    <region name="exampleRegion">
-      <region-attributes refid="REPLICATE">
-        <cache-loader>
-          <class-name>quickstart.SimpleCacheLoader</class-name>
-        </cache-loader>
-      </region-attributes>
-    </region>
+  <region name="people" refid="REPLICATE">
+    <region-attributes>
+      <cache-listener>
+        <class-name>com.gemstone.gemfire.tutorial.storage.LoggingCacheListener</class-name>
+      </cache-listener>
+    </region-attributes>
+  </region>
+	<region name="posts" refid="PARTITION_REDUNDANT">
+    <region-attributes>
+      <cache-listener>
+        <class-name>com.gemstone.gemfire.tutorial.storage.LoggingCacheListener</class-name>
+      </cache-listener>
+    </region-attributes>
+  </region>
 </cache>
